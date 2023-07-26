@@ -3,7 +3,8 @@ import { Routes, Route } from 'react-router-dom'
 import './App.css'
 import SignIn from './Components/loginPage'
 import ResponsiveAppBar from './Components/LandingPage'
-import GrowingZones from './Components/Zone'
+import GrowingZones from './Components/GrowingZones'
+import MasonryImageList from './Components/userPost'
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Route path = "/" element = {<ResponsiveAppBar />} />
         <Route path= '/login' element = {<SignIn/>} />
         <Route path = '/zones' element = {<GrowingZones/>} />
+        <Route path = '/post' element = {<MasonryImageList />} />
       </Routes>
     </>
   )

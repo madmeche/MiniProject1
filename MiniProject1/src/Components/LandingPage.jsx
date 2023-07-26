@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -19,6 +20,34 @@ const pages = ["US Zone Map", "Inspiration" ,"Reviews"];
 const settings = ["Profile", "Settings", "Notifications", "Logout"];
 
 function ResponsiveAppBar() {
+
+  const [selectedOption, setSelectedOption] = useState("");
+  const [selectedOption2, setSelectedOption2] = useState("");
+  const [selectedOption3, setSelectedOption3] = useState("");
+
+  const options = [
+    { value: "Full Sun", label: "Full Sun" },
+    { value: "1-3 Hours", label: "1-3 Hours" },
+    { value: "3-6 Hours", label: "3-6 Hours" },
+    { value: "6-9 Hours", label: "6-9 Hours" },
+    { value: "9-12 Hours", label: "9-12 Hours" },
+  ];
+
+  const options2 = [
+    { value: "Annuals", label: "Annuals" },
+    { value: "Perennials", label: "Perennials" },
+    { value: "Shrubs", label: "Shrubs" },
+    { value: "Trees", label: "Trees" },
+    { value: "Biennial", label: "Biennial" },
+  ];
+
+  const options3 = [
+    { value: "Spring", label: "Spring" },
+    { value: "Summer", label: "Summer" },
+    { value: "Fall", label: "Fall" },
+    { value: "Winter", label: "Winter" },
+  ];
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -38,6 +67,40 @@ function ResponsiveAppBar() {
   };
 
   return (
+    <>
+    <p><strong>Sun Exposure: {selectedOption}</strong></p>
+      <select value={selectedOption} onChange={(e) => setSelectedOption(e.target.value)}>
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
+      <br />
+      <br />
+
+      <p><strong>Categories: {selectedOption2}</strong></p>
+      <select value={selectedOption2} onChange={(e) => setSelectedOption2(e.target.value)}>
+        {options2.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
+      <br />
+      <br />
+
+      <p><strong>Season: {selectedOption3}</strong></p>
+      <select value={selectedOption3} onChange={(e) => setSelectedOption3(e.target.value)}>
+        {options3.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
+      
+      
+
     <AppBar position="fixed">
       <Container maxWidth='xl'  >
         <Toolbar disableGutters>
@@ -63,7 +126,7 @@ function ResponsiveAppBar() {
           </Link>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-           
+           {/* <Link to = '/zones'> */}
             <IconButton
               size='large'              
               aria-label="account of current user"
@@ -74,7 +137,9 @@ function ResponsiveAppBar() {
             >
               {/* <MenuIcon /> */}
             </IconButton>
-            
+            {/* </Link> */}
+
+            <Link to='/zones'>
             <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
@@ -96,11 +161,14 @@ function ResponsiveAppBar() {
               {pages.map((page) => (
                 
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
+                  <Link to = '/zones'>
                   <Typography textAlign="center"></Typography>
+                  </Link>
                 </MenuItem>
                 
               ))}
             </Menu>
+            </Link>
           </Box>
           <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
@@ -171,6 +239,7 @@ function ResponsiveAppBar() {
         </Toolbar>
       </Container>
     </AppBar>
+    </>
   );
 }
 export default ResponsiveAppBar;
